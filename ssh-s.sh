@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define o nome do usuário
-usuario="rochelly"
+usuario="meu_usuario"
 
 # Verifica se o fzf está instalado
 if ! command -v fzf &> /dev/null; then
