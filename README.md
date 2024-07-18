@@ -42,6 +42,11 @@ Clone o repositório e navegue até o diretório do projeto.
 git clone git@github.com:Rochelly/SSH-Selector.git
 cd SSH-Selector
 ```
+Dê permissão de execução.
+```bash
+chmod +x ssh-s.sh
+```
+
 Execute o script.
 
 ```bash
