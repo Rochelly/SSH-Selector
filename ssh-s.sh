@@ -12,22 +12,22 @@ fi
 # Define o arquivo hosts
 hosts_file="/etc/hosts"
 
-# Array para armazenar as localidades e servidores
+# Array para armazenar as categorias e servidores
 declare -A servers_by_location
 locations=()
 
 # Lê o arquivo linha por linha
 while IFS= read -r line; do
-    # Verifica se a linha indica uma nova localidade
+    # Verifica se a linha indica uma nova categoria
     if [[ $line =~ ^#--- ]]; then
-        # Extrai o nome da localidade removendo o prefixo "#---"
+        # Extrai o nome da categoria removendo o prefixo "#---"
         current_location=$(echo $line | sed 's/^#---//')
         locations+=("$current_location")
         servers_by_location["$current_location"]=""
         continue
     fi
     
-    # Se estamos dentro de uma localidade e a linha não é um comentário ou vazia
+    # Se estamos dentro de uma categoria e a linha não é um comentário ou vazia
     if [[ -n $current_location && ! $line =~ ^# && ! -z $line ]]; then
         # Extrai o nome do servidor
         server=$(echo $line | awk '{print $2}')
@@ -36,15 +36,15 @@ while IFS= read -r line; do
 
 done < "$hosts_file"
 
-# Converte o array de localidades em uma string separada por novas linhas
+# Converte o array de categorias em uma string separada por novas linhas
 locations_string=$(printf "%s\n" "${locations[@]}")
 
-# Usa fzf para selecionar uma localidade
-selected_location=$(echo -e "$locations_string" | fzf --prompt="Selecione uma localidade: ")
+# Usa fzf para selecionar uma categoria
+selected_location=$(echo -e "$locations_string" | fzf --prompt="Selecione uma categoria: ")
 
-# Verifica se uma localidade foi selecionada
+# Verifica se uma categoria foi selecionada
 if [ -n "$selected_location" ]; then
-    # Converte a lista de servidores da localidade selecionada em uma string separada por novas linhas
+    # Converte a lista de servidores da categoria selecionada em uma string separada por novas linhas
     servers_string=$(echo -e "${servers_by_location[$selected_location]}")
     
     # Usa fzf para selecionar um servidor
@@ -57,5 +57,5 @@ if [ -n "$selected_location" ]; then
         echo "Nenhum servidor selecionado."
     fi
 else
-    echo "Nenhuma localidade selecionada."
+    echo "Nenhuma categoria selecionada."
 fi
