@@ -77,7 +77,7 @@ Gere um par de chaves SSH utilizando o comando `ssh-keygen` no seu terminal loca
 Copie a chave pública para o servidor remoto usando `ssh-copy-id` ou manualmente.
 Configure seu cliente SSH para usar a chave privada gerada.
 
-Contribuição
+## Contribuição
 Sinta-se à vontade para abrir issues e pull requests com melhorias e correções. Todas as contribuições são bem-vindas!
 
 
