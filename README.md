@@ -1,7 +1,11 @@
-# SSH-Selector
+# SSH-Selector 🖥️
 
 
 Este script Bash permite que você gerencie e selecione localidades  ou categorias de servidores a partir do arquivo `/etc/hosts` usando o `fzf` para facilitar a navegação e conexão SSH.
+
+### Preview
+![ezgif-6-25cdb43159](https://github.com/user-attachments/assets/cf6700f6-9754-4915-896f-e1ac37965ec6)
+
 
 ## Pré-requisitos
 
@@ -16,7 +20,7 @@ O script lê o arquivo /etc/hosts, identifica as categorias e os servidores conf
 Estrutura do Arquivo /etc/hosts
 Para que o script funcione corretamente, o arquivo /etc/hosts deve seguir a seguinte estrutura:
 
-* Categorias devem ser indicadas com um comentário no formato `#---Localidade`.
+* Categorias devem ser indicadas com um comentário no formato `#---<Categoria>`.
 * Servidores dentro de cada categoria devem ser listados com o endereço IP e nome do host, separados por espaços.
 
 
@@ -45,7 +49,7 @@ Execute o script.
 ./ssh-s.sh
 ```
 
-Siga as instruções interativas para selecionar uma localidade e um servidor.
+Siga as instruções interativas para selecionar uma catergoria e um servidor.
 
 ## Exemplo de Execução
 Ao executar o script, você verá um prompt para selecionar uma localidade:
@@ -63,6 +67,15 @@ Selecione um servidor:
   servidor2
 ```
 Finalmente, o script se conectará ao servidor selecionado via SSH.
+
+## Dica Extra
+
+É altamente recomendado configurar a autenticação SSH utilizando chaves públicas e privadas. Isso aumenta a segurança e simplifica o processo de conexão sem a necessidade de inserir senhas repetidamente.
+
+Se você ainda não configurou sua chave SSH, você pode seguir estes passos:
+Gere um par de chaves SSH utilizando o comando `ssh-keygen` no seu terminal local.
+Copie a chave pública para o servidor remoto usando `ssh-copy-id` ou manualmente.
+Configure seu cliente SSH para usar a chave privada gerada.
 
 Contribuição
 Sinta-se à vontade para abrir issues e pull requests com melhorias e correções. Todas as contribuições são bem-vindas!
